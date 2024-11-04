@@ -35,4 +35,19 @@ public class PlayerController : MonoBehaviour
             Destroy(bullet, 2f);
         }        
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Fire"))
+        {
+
+        }
+        if (other.CompareTag("Plant"))
+        {
+
+        }
+        if (other.CompareTag("Water"))
+        {
+
+        }
+    }
 }
