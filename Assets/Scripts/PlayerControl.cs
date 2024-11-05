@@ -11,9 +11,14 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rigidbody;
     private float xDirection;
     private float zDirection;
+    [SerializeField] private Material fireMaterial;
+    [SerializeField] private Material plantMaterial;
+    [SerializeField] private Material waterMaterial;
+    private Material currentMaterial;
     void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        currentMaterial = fireMaterial;
     }
     void FixedUpdate()
     {
@@ -32,6 +37,7 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+            bullet.GetComponent<Renderer>().material = currentMaterial;
             Destroy(bullet, 2f);
         }        
     }
@@ -39,15 +45,15 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Fire"))
         {
-
+            currentMaterial = fireMaterial;
         }
         if (other.CompareTag("Plant"))
         {
-
+            currentMaterial = plantMaterial;
         }
         if (other.CompareTag("Water"))
         {
-
+            currentMaterial = waterMaterial;
         }
     }
 }
